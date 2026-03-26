@@ -1,0 +1,133 @@
+.scoreboard {
+  background: linear-gradient(135deg, #0d1529 0%, #151f35 50%, #0d1529 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.topLine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.teamSide {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.right { flex-direction: row-reverse; }
+
+.badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 900;
+  border: 2px solid;
+  flex-shrink: 0;
+  letter-spacing: 1px;
+}
+
+.teamInfo { flex: 1; }
+
+.teamName {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.teamSub {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.center {
+  text-align: center;
+  min-width: 180px;
+}
+
+.scoreWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.scoreNum {
+  font-family: var(--font-heading);
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  display: inline-block;
+  min-width: 52px;
+  text-align: center;
+}
+
+.scoreSep {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1;
+  margin: 0 2px;
+}
+
+.matchMeta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.timeBadge {
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 3px 12px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+.liveDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+.matchStatus {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}

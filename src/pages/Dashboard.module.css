@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--primary);
+  overflow: hidden;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
