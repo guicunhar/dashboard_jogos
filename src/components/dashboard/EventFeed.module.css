@@ -1,58 +1,72 @@
 .panel {
-  background: var(--primary);
-  padding: 14px;
-  overflow-y: auto;
+  background: var(--surface);
+  padding: 8px 14px;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
   height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
-.title {
+.titleStrip {
   font-family: var(--font-heading);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
   color: var(--muted);
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  white-space: nowrap;
+  padding: 4px 0;
   flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  padding-right: 8px;
+  margin-right: 4px;
 }
 
 .empty {
-  text-align: center;
   color: var(--muted);
   font-size: 13px;
-  padding: 24px 0;
+  white-space: nowrap;
 }
 
 .item {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  background: var(--surface);
-  border-radius: 4px;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border-radius: 6px;
   border-left: 3px solid;
   flex-shrink: 0;
+  min-width: 130px;
+  max-width: 200px;
+}
+
+.itemTop {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .time {
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--accent);
-  min-width: 36px;
+  white-space: nowrap;
 }
 
-.icon { font-size: 16px; }
-
-.detail { flex: 1; min-width: 0; }
+.icon { font-size: 14px; }
 
 .eventName {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -60,17 +74,17 @@
 }
 
 .eventSub {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
-  margin-top: 1px;
 }
 
 .teamTag {
-  font-size: 10px;
-  padding: 2px 7px;
+  font-size: 9px;
+  padding: 1px 5px;
   border-radius: 2px;
   font-weight: 700;
   font-family: var(--font-heading);
   letter-spacing: 1px;
-  flex-shrink: 0;
+  align-self: flex-start;
 }
+

@@ -7,35 +7,35 @@ export default function ScoreControl() {
 
   return (
     <div className={styles.section}>
-      <div className={styles.sectionTitle}>⚽ Placar</div>
+      <div className={styles.sectionTitle}>🏟 Placar</div>
       <div className={styles.body}>
         <div className={styles.scoreGrid}>
-          {/* Team A */}
           <div className={styles.scoreTeam}>
             <div className={styles.scoreTeamLabel}>{teamA}</div>
             <div className={styles.scoreBig}>{scoreA}</div>
             <div className={styles.btnRow} style={{ justifyContent: 'center' }}>
               <button className={`${styles.btn} ${styles.btnGreen} ${styles.btnSm}`} onClick={() => addGoal('a')}>+ Gol</button>
-              <button className={`${styles.btn} ${styles.btnRed} ${styles.btnSm}`} onClick={() => removeGoal('a')}>- Rem</button>
+              <button className={`${styles.btn} ${styles.btnDanger} ${styles.btnSm}`} onClick={() => removeGoal('a')}>− Rem</button>
             </div>
           </div>
 
           <div className={styles.scoreSep}>×</div>
 
-          {/* Team B */}
           <div className={styles.scoreTeam}>
             <div className={styles.scoreTeamLabel}>{teamB}</div>
             <div className={styles.scoreBig}>{scoreB}</div>
             <div className={styles.btnRow} style={{ justifyContent: 'center' }}>
               <button className={`${styles.btn} ${styles.btnGreen} ${styles.btnSm}`} onClick={() => addGoal('b')}>+ Gol</button>
-              <button className={`${styles.btn} ${styles.btnRed} ${styles.btnSm}`} onClick={() => removeGoal('b')}>- Rem</button>
+              <button className={`${styles.btn} ${styles.btnDanger} ${styles.btnSm}`} onClick={() => removeGoal('b')}>− Rem</button>
             </div>
           </div>
         </div>
 
-        <button className={`${styles.btn} ${styles.btnGhost} ${styles.btnFull}`} onClick={resetScore} style={{ marginTop: 10 }}>
-          ↺ Zerar Placar
-        </button>
+        <button
+          className={`${styles.btn} ${styles.btnGhost} ${styles.btnFull}`}
+          style={{ marginTop: 12 }}
+          onClick={resetScore}
+        >↺ Zerar Placar</button>
       </div>
     </div>
   )

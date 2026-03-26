@@ -3,20 +3,24 @@ import { useMatchStore, formatTime } from '../../store/matchStore'
 import styles from './ControlSection.module.css'
 
 export default function StatsPanel() {
-  const { stats, events, timerSec, clearEvents } = useMatchStore()
+  const { stats, timerSec, clearEvents } = useMatchStore()
 
   return (
     <div className={styles.section}>
-      <div className={styles.sectionTitle}>📊 Estatísticas da Partida</div>
+      <div className={styles.sectionTitle}>📊 Estatísticas</div>
       <div className={styles.body}>
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
-            <div className={styles.statLabel}>Gols Time A</div>
+            <div className={styles.statLabel}>Gols A</div>
             <div className={styles.statVal}>{stats.goalsA}</div>
           </div>
           <div className={styles.statCard}>
-            <div className={styles.statLabel}>Gols Time B</div>
+            <div className={styles.statLabel}>Gols B</div>
             <div className={styles.statVal}>{stats.goalsB}</div>
+          </div>
+          <div className={styles.statCard}>
+            <div className={styles.statLabel}>Tempo</div>
+            <div className={styles.statVal} style={{ fontSize: 20 }}>{formatTime(timerSec)}</div>
           </div>
           <div className={styles.statCard}>
             <div className={styles.statLabel}>Amarelos</div>
@@ -27,21 +31,15 @@ export default function StatsPanel() {
             <div className={styles.statVal}>🟥 {stats.reds}</div>
           </div>
           <div className={styles.statCard}>
-            <div className={styles.statLabel}>Substituições</div>
+            <div className={styles.statLabel}>Subs</div>
             <div className={styles.statVal}>🔄 {stats.subs}</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statLabel}>Tempo de jogo</div>
-            <div className={styles.statVal}>{formatTime(timerSec)}</div>
           </div>
         </div>
         <button
           className={`${styles.btn} ${styles.btnGhost} ${styles.btnFull}`}
-          style={{ marginTop: 10 }}
+          style={{ marginTop: 12 }}
           onClick={clearEvents}
-        >
-          🗑 Limpar todos os eventos
-        </button>
+        >🗑 Limpar eventos</button>
       </div>
     </div>
   )

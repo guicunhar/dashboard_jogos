@@ -6,10 +6,61 @@
   overflow: hidden;
 }
 
-.main {
+/* ── Zona principal: grid de 3 colunas com altura FIXA via flex ── */
+.mainArea {
   display: grid;
-  grid-template-columns: 240px 1fr 240px;
+  grid-template-columns: 280px 1fr 280px;
+  /* Altura = 100vh menos scoreboard (~120px) menos bottombar (~36px) menos eventsZone (220px) */
   flex: 1;
   min-height: 0;
+  overflow: hidden;
+  /* As 3 células do grid NUNCA crescem além da altura do mainArea */
+  align-items: stretch;
+}
+
+/* ── Escalações: altura forçada pela célula do grid — nunca cresce, nunca scrollba ── */
+.lineupCol {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  /* Força a coluna a nunca ultrapassar a altura definida pelo grid */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* min/max height prende ao grid */
+  min-height: 0;
+  max-height: 100%;
+}
+
+.lineupCol:last-child {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+/* ── Coluna central: empilha câmeras + eventos sem crescer além do grid ── */
+.centerCol {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Câmeras: flex crescente mas limitado */
+.cameraZone {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Eventos: altura FIXA — nunca cresce, nunca afeta o restante */
+.eventsZone {
+  height: 220px;
+  flex-shrink: 0;
+  min-height: 220px;
+  max-height: 220px;
+  background: var(--surface);
+  border-top: 2px solid var(--border);
   overflow: hidden;
 }

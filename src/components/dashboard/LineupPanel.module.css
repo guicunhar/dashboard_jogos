@@ -1,9 +1,17 @@
+/* O panel recebe a altura do grid cell — nunca a define */
 .panel {
   background: var(--surface);
   border-right: 1px solid var(--border);
-  padding: 14px;
-  overflow-y: auto;
+  padding: 12px 12px 8px;
+
+  /* Preenche exatamente a célula do grid */
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  overflow: hidden;       /* NUNCA deixa conteúdo estourar */
+  box-sizing: border-box;
 }
 
 .right {
@@ -11,60 +19,72 @@
   border-left: 1px solid var(--border);
 }
 
+/* Nome do time */
 .title {
   font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;         /* título nunca encolhe */
 }
 
+/* Cada jogador divide o espaço restante igualmente */
 .row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 6px;
-  border-radius: 4px;
+  gap: 9px;
+  flex: 1;                /* divide espaço com os outros rows */
+  min-height: 0;          /* permite encolher */
+  padding: 1px 6px;
+  border-radius: 5px;
   transition: background 0.15s;
+  overflow: hidden;
 }
 
 .row:hover { background: var(--surface2); }
 
-.num {
-  font-family: var(--font-heading);
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--accent);
-  min-width: 20px;
-  text-align: center;
-}
-
-.avatar {
+/* Bolinha com número */
+.numBall {
   width: 28px;
   height: 28px;
+  min-width: 28px;
   border-radius: 50%;
+  border: 1.5px solid;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  font-weight: 700;
-  flex-shrink: 0;
-  border: 1px solid;
   font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 900;
+  flex-shrink: 0;
+  line-height: 1;
 }
 
-.info { flex: 1; min-width: 0; }
+.info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+}
 
 .name {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
+  color: var(--text);
 }
 
 .pos {
@@ -72,17 +92,14 @@
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 1px;
+  line-height: 1;
 }
 
-.cards { display: flex; gap: 3px; }
-
-.card {
-  font-size: 9px;
-  padding: 1px 4px;
-  border-radius: 2px;
-  font-weight: 700;
-  font-family: var(--font-heading);
+.cards {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-.yellow { background: var(--yellow); color: #000; }
-.red { background: var(--red); color: #fff; }
+.card { font-size: 11px; line-height: 1; }

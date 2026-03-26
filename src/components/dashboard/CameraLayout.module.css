@@ -1,0 +1,58 @@
+.grid {
+  display: grid;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  gap: 2px;
+  padding: 2px;
+  background: #050508;
+  box-sizing: border-box;
+}
+
+/* 1 câmera */
+.g1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+
+/* 2 câmeras: lado a lado */
+.g2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+
+/* 4 câmeras: 2×2 */
+.g4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+/* 6 câmeras: 3×2 */
+.g6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+
+.slot {
+  background: #0a0a10;
+  border: 1px solid #1a2035;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+}
+
+.slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 18px,
+    rgba(255,255,255,0.01) 18px,
+    rgba(255,255,255,0.01) 19px
+  );
+}
+
+.camIcon { color: #1e2840; position: relative; }
+
+.camLabel {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #1e2840;
+  text-transform: uppercase;
+  position: relative;
+}

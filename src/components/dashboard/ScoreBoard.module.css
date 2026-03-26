@@ -1,72 +1,94 @@
 .scoreboard {
   background: linear-gradient(135deg, #0d1529 0%, #151f35 50%, #0d1529 100%);
   border-bottom: 1px solid var(--border);
-  padding: 16px 24px 12px;
+  padding: 8px 32px 12px;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
-.topLine {
+.accentLine {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
 }
 
-.row {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
-  max-width: 960px;
-  margin: 0 auto;
-}
-
-.teamSide {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.right { flex-direction: row-reverse; }
-
-.badge {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+/* ── Campeonato acima do placar ── */
+.competitionRow {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-heading);
-  font-size: 15px;
-  font-weight: 900;
-  border: 2px solid;
-  flex-shrink: 0;
-  letter-spacing: 1px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
-.teamInfo { flex: 1; }
+.compDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.compName {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Layout principal: casa | placar | visitante ── */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Casa: texto alinhado à DIREITA encostando no placar */
+.teamLeft {
+  text-align: right;
+  padding-right: 28px;
+  flex: 1;
+}
+
+/* Visitante: texto alinhado à ESQUERDA encostando no placar */
+.teamRight {
+  text-align: left;
+  padding-left: 28px;
+  flex: 1;
+}
 
 .teamName {
   font-family: var(--font-heading);
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 36px;
+  font-weight: 900;
   letter-spacing: 1px;
   text-transform: uppercase;
   line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.teamSub {
-  font-size: 11px;
+.teamRole {
+  font-size: 10px;
   color: var(--muted);
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin-top: 2px;
+  margin-bottom: 3px;
 }
 
+/* ── Placar ── */
 .center {
   text-align: center;
-  min-width: 180px;
+  flex-shrink: 0;
 }
 
 .scoreWrap {
@@ -78,29 +100,30 @@
 
 .scoreNum {
   font-family: var(--font-heading);
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 1;
   display: inline-block;
-  min-width: 52px;
+  min-width: 58px;
   text-align: center;
 }
 
 .scoreSep {
   font-family: var(--font-heading);
-  font-size: 48px;
+  font-size: 50px;
   font-weight: 300;
   color: var(--muted);
   line-height: 1;
-  margin: 0 2px;
+  margin: 0 6px;
 }
 
+/* ── Meta (tempo + status) ── */
 .matchMeta {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .timeBadge {
@@ -109,9 +132,9 @@
   font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 800;
-  padding: 3px 12px;
+  padding: 3px 14px;
   border-radius: 2px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .liveDot {

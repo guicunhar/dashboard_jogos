@@ -20,25 +20,25 @@ export default function TimerControl() {
       <div className={styles.body}>
         <div className={styles.timerDisplay}>{formatTime(timerSec)}</div>
         <div className={styles.btnRow}>
-          {timerRunning ? (
-            <button className={`${styles.btn} ${styles.btnGhost}`} onClick={pauseTimer}>⏸ Pausar</button>
-          ) : (
-            <button className={`${styles.btn} ${styles.btnGreen}`} onClick={startTimer}>▶ Iniciar</button>
-          )}
+          {timerRunning
+            ? <button className={`${styles.btn} ${styles.btnGhost}`} style={{ flex: 1 }} onClick={pauseTimer}>⏸ Pausar</button>
+            : <button className={`${styles.btn} ${styles.btnGreen}`} style={{ flex: 1 }} onClick={startTimer}>▶ Iniciar</button>
+          }
           <button className={`${styles.btn} ${styles.btnGhost}`} onClick={resetTimer}>↺ Reset</button>
+        </div>
+        <div className={styles.inputRow} style={{ marginTop: 10 }}>
           <input
             className={styles.input}
             type="number"
             min="0"
             max="120"
-            placeholder="Min"
+            placeholder="Pular para minuto..."
             value={manualMin}
-            onChange={(e) => setManualMin(e.target.value)}
-            style={{ width: 72 }}
+            onChange={e => setManualMin(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && handleSetTime()}
+            style={{ flex: 1 }}
           />
-          <button className={`${styles.btn} ${styles.btnBlue} ${styles.btnSm}`} onClick={handleSetTime}>
-            Definir
-          </button>
+          <button className={`${styles.btn} ${styles.btnBlue}`} onClick={handleSetTime}>Ir</button>
         </div>
       </div>
     </div>
