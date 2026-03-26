@@ -47,6 +47,10 @@
 }
 .obsBtn:hover { filter: brightness(1.15); }
 
+.obsBtnTiktok {
+  background: #ff0050;
+}
+
 /* ── Tabs ── */
 .tabs {
   display: flex;

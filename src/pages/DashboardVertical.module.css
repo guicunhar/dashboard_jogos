@@ -1,0 +1,309 @@
+/* ══════════════════════════════════════════
+   WRAPPER: centraliza o canvas 9:16 em
+   qualquer viewport, igual ao OBS faz
+══════════════════════════════════════════ */
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Canvas fixo em proporção 9:16.
+   O OBS captura exatamente este elemento.
+   Tamanho real: 430×763px por padrão no browser,
+   mas o OBS usa 1080×1920 — mesma proporção. */
+.canvas {
+  /* Proporção 9:16 baseada na largura disponível */
+  width: min(100vw, calc(100vh * 9 / 16));
+  height: min(100vh, calc(100vw * 16 / 9));
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ══════════════════════════════════════════
+   SCOREBOARD
+══════════════════════════════════════════ */
+.scoreboard {
+  background: linear-gradient(180deg, #0a0e1a 0%, #131c30 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.accentLine {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.compRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.compDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.compName {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scoreRow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.teamBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.teamBlockRight { align-items: flex-start; }
+
+.teamBadge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.teamName {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+}
+
+.teamRole {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scoreCenter { text-align: center; flex-shrink: 0; }
+
+.scoreWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.scoreNum {
+  font-family: var(--font-heading);
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+  min-width: 40px;
+  text-align: center;
+  display: inline-block;
+}
+
+.scoreSep {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--muted);
+  margin: 0 2px;
+  line-height: 1;
+}
+
+.timeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 2px 10px;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+.liveDot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ══════════════════════════════════════════
+   CÂMERA
+   Usa aspect-ratio 9:16 para que a câmera
+   fique sempre proporcional ao canvas.
+   overflow: hidden garante que não vaze.
+══════════════════════════════════════════ */
+.cameraZone {
+  /* Ocupa todo o espaço restante após scoreboard + tabBar + expandPanel */
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  /* Impede que o CameraLayout interno quebre o layout */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Garante que o CameraLayout filho preencha a zona */
+.cameraZone > * {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* ══════════════════════════════════════════
+   EVENTOS — zona fixa na base do canvas.
+   Altura fixa: nunca muda, com ou sem eventos.
+══════════════════════════════════════════ */
+.eventsFixed {
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-top: 2px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Eventos ── */
+.eventsPanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.eventsLabel {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 14px 7px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.eventsLabelDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: blink 1s infinite;
+}
+
+/* Lista ocupa o espaço restante com scroll — não empurra nada */
+.eventsList {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px 14px 10px;
+}
+
+.eventsEmpty {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 4px 0;
+}
+
+.eventItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  background: var(--surface2);
+  border-radius: 5px;
+  border-left: 3px solid;
+  flex-shrink: 0;
+}
+
+.eventMin {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  min-width: 28px;
+  flex-shrink: 0;
+}
+
+.eventIcon { font-size: 13px; flex-shrink: 0; }
+
+.eventName {
+  font-size: 12px;
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.eventTag {
+  font-size: 9px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
