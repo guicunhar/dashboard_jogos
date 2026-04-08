@@ -61,7 +61,6 @@ export const useMatchStore = create((set, get) => {
     colorA: '#3b82f6',
     colorB: '#ef4444',
     competition: 'Campeonato Brasileiro · Série A',
-    matchId: '',
 
     // Score
     scoreA: 0,

@@ -1,7 +1,5 @@
 {
   "rewrites": [
-    { "source": "/api/football",  "destination": "/api/football"  },
-    { "source": "/api/sofascore", "destination": "/api/sofascore" },
-    { "source": "/(.*)",          "destination": "/index.html"    }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
