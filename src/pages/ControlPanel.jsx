@@ -25,7 +25,7 @@ export default function ControlPanel() {
         <div className={styles.headerTitle}>🎮 Painel de Controle</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <a href="/dashboard" target="_blank" rel="noreferrer" className={styles.obsBtn}>
-            📺 Dashboard (OBS)
+            📺 DashboardS (OBS)
           </a>
           <a href="/dashboard-vertical" target="_blank" rel="noreferrer" className={`${styles.obsBtn} ${styles.obsBtnTiktok}`}>
             📱 TikTok Live
