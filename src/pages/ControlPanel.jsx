@@ -11,7 +11,7 @@ import styles from './ControlPanel.module.css'
 const TABS = [
   { id: 'jogo',      label: '⚽ Jogo'      },
   { id: 'escalacao', label: '📋 Escalações' },
-  { id: 'cameras',   label: '📹 C.âmeras'   },
+  { id: 'cameras',   label: '📹 Câmeras'   },
   { id: 'config',    label: '⚙️ Config'    },
 ]
 
@@ -25,7 +25,7 @@ export default function ControlPanel() {
         <div className={styles.headerTitle}>🎮 Painel de Controle</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <a href="/dashboard" target="_blank" rel="noreferrer" className={styles.obsBtn}>
-            📺 DashboardS (OBS)
+            📺 Dashboard (OBS)
           </a>
           <a href="/dashboard-vertical" target="_blank" rel="noreferrer" className={`${styles.obsBtn} ${styles.obsBtnTiktok}`}>
             📱 TikTok Live

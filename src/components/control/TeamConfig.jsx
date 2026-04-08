@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useMatchStore } from '../../store/matchStore'
-import { fetchMatchInfo, fetchLineups, fetchEvents, fetchFullMatch } from '../../services/matchApi'
+import { fetchMatchInfo, fetchLineups, fetchFullMatch } from '../../services/matchApi'
 import styles from './ControlSection.module.css'
 
 const COLORS = ['#3b82f6', '#ef4444', '#f59e0b', '#22c55e', '#a855f7', '#ec4899', '#f1f5f9', '#06b6d4']
@@ -69,8 +69,6 @@ export default function TeamConfig() {
         })
         updateLineup('a', data.lineupA)
         updateLineup('b', data.lineupB)
-        // Também carrega eventos
-        useMatchStore.setState({ events: data.events })
         setCfgA(data.teamA)
         setCfgB(data.teamB)
         setCfgComp(data.competition)
@@ -99,12 +97,6 @@ export default function TeamConfig() {
         updateLineup('a', data.lineupA)
         updateLineup('b', data.lineupB)
         setApiMsg(`✅ Escalações carregadas (${data.lineupA.length} + ${data.lineupB.length} jogadores)`)
-      }
-
-      else if (type === 'events') {
-        const data = await fetchEvents(id, cfgA, cfgB, clrA, clrB)
-        useMatchStore.setState({ events: data })
-        setApiMsg(`✅ ${data.length} eventos carregados`)
       }
 
       setApiStatus('ok')
@@ -155,13 +147,6 @@ export default function TeamConfig() {
               onClick={() => handleApiLoad('lineups')}
             >
               {apiStatus === 'loading' && loadType === 'lineups' ? '⏳...' : '📋 Só Escalações'}
-            </button>
-            <button
-              className={`${styles.btn} ${styles.btnGhost} ${styles.btnSm}`}
-              disabled={apiStatus === 'loading'}
-              onClick={() => handleApiLoad('events')}
-            >
-              {apiStatus === 'loading' && loadType === 'events' ? '⏳...' : '⚡ Só Eventos'}
             </button>
           </div>
 
