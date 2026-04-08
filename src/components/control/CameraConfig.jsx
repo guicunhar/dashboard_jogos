@@ -187,7 +187,7 @@ export default function CameraConfig() {
 
   return (
     <div className={styles.section}>
-      <div className={styles.sectionTitle}>📹 Câmeras</div>
+      <div className={styles.sectionTitle}>📹. Câmeras</div>
       <div className={styles.body}>
 
         {/* Detectar + Preset */}
