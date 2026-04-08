@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useMatchStore } from '../../store/matchStore'
-import { fetchMatchInfo, fetchLineups, fetchFullMatch } from '../../services/matchApi'
+import { fetchMatchInfo, fetchLineups, fetchFullMatch, DEFAULT_SOURCE } from '../../services/matchApi'
 import styles from './ControlSection.module.css'
 
 const COLORS = ['#3b82f6', '#ef4444', '#f59e0b', '#22c55e', '#a855f7', '#ec4899', '#f1f5f9', '#06b6d4']
@@ -10,6 +10,11 @@ const CAM_OPTIONS = [
   { n: 2, label: 'Dupla'     },
   { n: 4, label: 'Quad'      },
   { n: 6, label: 'Hexa'      },
+]
+
+const SOURCES = [
+  { id: 'sofascore', label: '🟡 SofaScore', hint: 'ID numérico da URL: sofascore.com/football/.../ID' },
+  { id: 'football',  label: '🔵 API-Football', hint: 'ID do fixture: v3.football.api-sports.io/fixtures?id=ID' },
 ]
 
 export default function TeamConfig() {
@@ -23,11 +28,12 @@ export default function TeamConfig() {
   const [cfgComp, setCfgComp] = useState(competition)
   const [cams,    setCams]    = useState(cameraCount)
   const [mid,     setMid]     = useState(matchId || '')
+  const [source,  setSource]  = useState(DEFAULT_SOURCE)
 
   // API load status
-  const [apiStatus, setApiStatus] = useState('idle')   // idle | loading | ok | error
+  const [apiStatus, setApiStatus] = useState('idle')
   const [apiMsg,    setApiMsg]    = useState('')
-  const [loadType,  setLoadType]  = useState('')        // 'full' | 'info' | 'lineups' | 'events'
+  const [loadType,  setLoadType]  = useState('')
 
   const apply = () => {
     setTeamConfig({
@@ -55,7 +61,7 @@ export default function TeamConfig() {
 
     try {
       if (type === 'full') {
-        const data = await fetchFullMatch(id, clrA, clrB)
+        const data = await fetchFullMatch(id, source)
         setTeamConfig({
           teamA:       data.teamA,
           teamB:       data.teamB,
@@ -76,7 +82,7 @@ export default function TeamConfig() {
       }
 
       else if (type === 'info') {
-        const data = await fetchMatchInfo(id)
+        const data = await fetchMatchInfo(id, source)
         setTeamConfig({
           teamA:       data.teamA,
           teamB:       data.teamB,
@@ -93,7 +99,7 @@ export default function TeamConfig() {
       }
 
       else if (type === 'lineups') {
-        const data = await fetchLineups(id)
+        const data = await fetchLineups(id, source)
         updateLineup('a', data.lineupA)
         updateLineup('b', data.lineupB)
         setApiMsg(`✅ Escalações carregadas (${data.lineupA.length} + ${data.lineupB.length} jogadores)`)
@@ -113,12 +119,28 @@ export default function TeamConfig() {
 
         {/* ── ID da Partida + botões API ── */}
         <div className={styles.matchIdBlock}>
-          <div className={styles.fieldLabel}>🔑 ID da Partida (para API)</div>
+
+          {/* Seletor de fonte */}
+          <div className={styles.fieldLabel}>🌐 Fonte de Dados</div>
+          <div className={styles.modeToggle} style={{ marginBottom: 10 }}>
+            {SOURCES.map(s => (
+              <button
+                key={s.id}
+                className={`${styles.modeBtn} ${source === s.id ? styles.modeBtnActive : ''}`}
+                onClick={() => { setSource(s.id); setApiMsg('') }}
+              >{s.label}</button>
+            ))}
+          </div>
+          <div className={styles.apiHint} style={{ marginBottom: 10 }}>
+            {SOURCES.find(s => s.id === source)?.hint}
+          </div>
+
+          <div className={styles.fieldLabel}>🔑 ID da Partida</div>
           <div className={styles.inputRow}>
             <input
               className={styles.input}
               style={{ flex: 1 }}
-              placeholder="ex: 123456 ou abc-xyz"
+              placeholder={source === 'sofascore' ? 'ex: 12501984' : 'ex: 592872'}
               value={mid}
               onChange={e => setMid(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleApiLoad('full')}
@@ -158,7 +180,7 @@ export default function TeamConfig() {
           )}
 
           <div className={styles.apiHint}>
-            Configure os endpoints em <code>src/services/matchApi.js</code>
+            Proxy Vercel em <code>/api/sofascore</code> e <code>/api/football</code> — sem CORS.
           </div>
         </div>
 
