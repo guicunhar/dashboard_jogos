@@ -471,34 +471,85 @@
   margin: 4px 0 16px;
 }
 
+/* ── Slider row ── */
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sliderLabel {
+  font-size: 11px;
+  color: var(--muted);
+  min-width: 80px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sliderVal {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 44px;
+  text-align: right;
+}
+
 /* ── Camera slot config ── */
 .camSlotCfg {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 10px 12px;
+  overflow: hidden;
+}
+
+.camSlotHeader {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.camSlotHeader:hover { background: var(--surface3); }
+
+.camSlotBody {
+  padding: 12px;
+  border-top: 1px solid var(--border);
 }
 
 .camSlotLabel {
   font-family: var(--font-heading);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--accent);
+  flex-shrink: 0;
+}
+
+.camSlotType {
+  font-size: 11px;
+  color: var(--muted);
+  flex: 1;
+}
+
+.camChevron {
+  font-size: 10px;
+  color: var(--muted);
 }
 
 .camTypeRow {
   display: flex;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .camTypeBtn {
-  flex: 1;
-  padding: 6px 8px;
+  padding: 6px 10px;
   background: var(--surface3);
   border: 1px solid var(--border);
   border-radius: 5px;
@@ -520,11 +571,7 @@
   color: #fff;
 }
 
-.camSourceRow {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.camSourceRow { display: flex; flex-direction: column; gap: 6px; }
 
 .camHint {
   font-size: 11px;

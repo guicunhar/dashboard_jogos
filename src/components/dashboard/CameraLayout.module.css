@@ -1,121 +1,89 @@
-
-.grid {
-  display: grid;
+/* Zona livre — câmeras posicionadas absolutamente */
+.zone {
+  position: relative;
   width: 100%;
-  gap: 2px;
-  padding: 2px;
+  height: 100%;
   background: #050508;
-  box-sizing: border-box;
-
-  align-content: center;
+  overflow: hidden;
 }
 
-
-.g1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
-
-.g2 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.g4 {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.g6 {
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto;
-}
-
-
-/* ── Slot placeholder ── */
+/* Cada slot: posição absoluta dentro da zona */
 .slot {
+  position: absolute;
+  /* left, top, width definidos via style inline */
+}
+
+/* Trick de proporção: padding-top = (H/W)*100% */
+.aspectBox {
+  position: relative;
+  width: 100%;
+  height: 0;
+  /* padding-top definido via style inline */
+}
+
+/* Conteúdo do slot ocupa todo o espaço do aspectBox */
+.aspectInner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
   background: #0a0a10;
   border: 1px solid #1a2035;
+}
+
+/* Vídeo / iframe preenchem o inner */
+.media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Conteúdo do placeholder */
+.slotInner {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  position: relative;
-  overflow: hidden;
-}
-
-.slot::before {
-  content: '';
-  position: absolute;
-  inset: 0;
   background: repeating-linear-gradient(
     45deg,
     transparent,
     transparent 18px,
-    rgba(255,255,255,0.01) 18px,
-    rgba(255,255,255,0.01) 19px
+    rgba(255,255,255,0.012) 18px,
+    rgba(255,255,255,0.012) 19px
   );
 }
 
-.camIcon { color: #1e2840; position: relative; }
-
 .camLabel {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: #1e2840;
-  text-transform: uppercase;
-  position: relative;
-}
-
-/* ── Slot com vídeo (webcam ou VDO) ── */
-.slotVideo {
-  position: relative;
-  overflow: hidden;
-  background: #000;
-  aspect-ratio: 4 / 3;
-}
-
-.videoEl {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.iframeEl {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-
-/* Label flutuante sobre o vídeo */
-.camOverlayLabel {
-  position: absolute;
-  bottom: 6px;
-  left: 8px;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  color: #2a3654;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  pointer-events: none;
 }
 
-/* ── Slot de erro ── */
-.slotError {
-  background: #0a0a10;
-  border: 1px solid #3f1010;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 8px;
+/* Label flutuante sobre vídeo */
+.camOverlayLabel {
+  position: absolute;
+  bottom: 5px;
+  left: 7px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .errMsg {
   font-size: 10px;
   color: #ef4444;
   text-align: center;
-  letter-spacing: 0.5px;
+  padding: 0 8px;
 }

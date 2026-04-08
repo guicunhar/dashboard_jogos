@@ -84,15 +84,18 @@ export const useMatchStore = create((set, get) => {
 
     // Camera layout
     cameraCount: 1,
-    // Config de cada câmera: array de { type: 'placeholder'|'webcam'|'vdo', src: '' }
-    cameras: [
-      { type: 'placeholder', src: '' },
-      { type: 'placeholder', src: '' },
-      { type: 'placeholder', src: '' },
-      { type: 'placeholder', src: '' },
-      { type: 'placeholder', src: '' },
-      { type: 'placeholder', src: '' },
-    ],
+    // Config de cada câmera:
+    // { type, src, aspect: '4:3'|'16:9'|'1:1'|'9:16'|'custom',
+    //   customW: 4, customH: 3,
+    //   x: 0, y: 0,        ← posição em % dentro da zona de câmeras
+    //   w: 50, h: 50,      ← tamanho em %
+    //   fit: 'cover'|'contain' }
+    cameras: Array.from({ length: 6 }, () => ({
+      type: 'placeholder', src: '',
+      aspect: '4:3', customW: 4, customH: 3,
+      x: 0, y: 0, w: 50, h: 50,
+      fit: 'cover',
+    })),
 
     // Stats
     stats: { goalsA: 0, goalsB: 0, yellows: 0, reds: 0, subs: 0 },
