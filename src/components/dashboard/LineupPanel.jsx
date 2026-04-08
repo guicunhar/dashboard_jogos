@@ -10,7 +10,6 @@ function PlayerRow({ player, color }) {
       </div>
       <div className={styles.info}>
         <div className={styles.name}>{player.name}</div>
-        <div className={styles.pos}>{player.pos}</div>
       </div>
       <div className={styles.cards}>
         {player.cards.map((c, i) => (
