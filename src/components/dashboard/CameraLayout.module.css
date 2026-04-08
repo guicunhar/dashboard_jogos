@@ -1,6 +1,5 @@
 .grid {
   display: grid;
-  flex: 1;
   width: 100%;
   height: 100%;
   gap: 2px;
@@ -9,18 +8,12 @@
   box-sizing: border-box;
 }
 
-/* 1 câmera */
 .g1 { grid-template-columns: 1fr; grid-template-rows: 1fr; }
-
-/* 2 câmeras: lado a lado */
 .g2 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
-
-/* 4 câmeras: 2×2 */
 .g4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-
-/* 6 câmeras: 3×2 */
 .g6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
 
+/* ── Slot placeholder ── */
 .slot {
   background: #0a0a10;
   border: 1px solid #1a2035;
@@ -30,6 +23,7 @@
   justify-content: center;
   gap: 5px;
   position: relative;
+  overflow: hidden;
 }
 
 .slot::before {
@@ -55,4 +49,58 @@
   color: #1e2840;
   text-transform: uppercase;
   position: relative;
+}
+
+/* ── Slot com vídeo (webcam ou VDO) ── */
+.slotVideo {
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.videoEl {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.iframeEl {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Label flutuante sobre o vídeo */
+.camOverlayLabel {
+  position: absolute;
+  bottom: 6px;
+  left: 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  pointer-events: none;
+}
+
+/* ── Slot de erro ── */
+.slotError {
+  background: #0a0a10;
+  border: 1px solid #3f1010;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.errMsg {
+  font-size: 10px;
+  color: #ef4444;
+  text-align: center;
+  letter-spacing: 0.5px;
 }

@@ -5,12 +5,14 @@ import EventLogger from '../components/control/EventLogger'
 import TeamConfig from '../components/control/TeamConfig'
 import StatsPanel from '../components/control/StatsPanel'
 import LineupEditor from '../components/control/LineupEditor'
+import CameraConfig from '../components/control/CameraConfig'
 import styles from './ControlPanel.module.css'
 
 const TABS = [
-  { id: 'jogo',      label: '⚽ Jogo' },
+  { id: 'jogo',      label: '⚽ Jogo'      },
   { id: 'escalacao', label: '📋 Escalações' },
-  { id: 'config',    label: '⚙️ Config' },
+  { id: 'cameras',   label: '📹 Câmeras'   },
+  { id: 'config',    label: '⚙️ Config'    },
 ]
 
 export default function ControlPanel() {
@@ -47,7 +49,6 @@ export default function ControlPanel() {
       {/* Content */}
       <div className={styles.content}>
 
-        {/* ── ABA JOGO ── */}
         {tab === 'jogo' && (
           <div className={styles.twoCol}>
             <div className={styles.col}>
@@ -61,14 +62,18 @@ export default function ControlPanel() {
           </div>
         )}
 
-        {/* ── ABA ESCALAÇÕES ── */}
         {tab === 'escalacao' && (
           <div className={styles.singleCol}>
             <LineupEditor />
           </div>
         )}
 
-        {/* ── ABA CONFIG ── */}
+        {tab === 'cameras' && (
+          <div className={styles.singleCol}>
+            <CameraConfig />
+          </div>
+        )}
+
         {tab === 'config' && (
           <div className={styles.singleCol}>
             <TeamConfig />

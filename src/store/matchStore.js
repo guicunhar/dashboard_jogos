@@ -61,6 +61,7 @@ export const useMatchStore = create((set, get) => {
     colorA: '#3b82f6',
     colorB: '#ef4444',
     competition: 'Campeonato Brasileiro · Série A',
+    matchId: '',
 
     // Score
     scoreA: 0,
@@ -83,6 +84,15 @@ export const useMatchStore = create((set, get) => {
 
     // Camera layout
     cameraCount: 1,
+    // Config de cada câmera: array de { type: 'placeholder'|'webcam'|'vdo', src: '' }
+    cameras: [
+      { type: 'placeholder', src: '' },
+      { type: 'placeholder', src: '' },
+      { type: 'placeholder', src: '' },
+      { type: 'placeholder', src: '' },
+      { type: 'placeholder', src: '' },
+      { type: 'placeholder', src: '' },
+    ],
 
     // Stats
     stats: { goalsA: 0, goalsB: 0, yellows: 0, reds: 0, subs: 0 },
@@ -162,6 +172,13 @@ export const useMatchStore = create((set, get) => {
 
     // ── CONFIG ──
     setTeamConfig: (cfg) => syncSet(cfg),
+
+    // Atualiza a config de uma câmera específica pelo índice
+    setCameraConfig: (index, camCfg) => syncSet((s) => {
+      const cameras = [...s.cameras]
+      cameras[index] = { ...cameras[index], ...camCfg }
+      return { cameras }
+    }),
 
     // ── RECEBER SYNC (Dashboard aplica estado recebido sem sobrescrever interval/flash) ──
     applyRemoteState: (payload) => {

@@ -255,7 +255,7 @@
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid var(--border);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .toggleBtn {
@@ -276,6 +276,119 @@
 .toggleActive {
   background: var(--accent);
   color: #000;
+}
+
+/* Modo manual / API */
+.modeToggle {
+  display: flex;
+  gap: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.modeBtn {
+  flex: 1;
+  padding: 8px 12px;
+  background: var(--surface2);
+  border: none;
+  color: var(--muted);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.modeBtnActive {
+  background: var(--accent2);
+  color: #fff;
+}
+
+.fieldLabelSm {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+/* API Preview */
+.apiPreview {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.apiPreviewTitle {
+  font-size: 13px;
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.apiPreviewNum {
+  width: 32px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* API Error */
+.apiError {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #fca5a5;
+}
+
+/* API Success */
+.apiSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  color: var(--green);
+}
+
+/* API Raw / Tip */
+.apiTip {
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.apiTip summary {
+  padding: 6px 0;
+  user-select: none;
+  outline: none;
+}
+
+.apiRaw {
+  margin-top: 8px;
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+  color: var(--muted);
+  overflow-x: auto;
+  white-space: pre;
+  font-family: var(--font-mono, monospace);
+  max-height: 200px;
+  overflow-y: auto;
 }
 
 .playerEditHeader {
@@ -316,6 +429,129 @@
   border-radius: 6px;
   padding: 8px 12px;
   line-height: 1.5;
+}
+
+/* ── Match ID / API block ── */
+.matchIdBlock {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.apiLoadGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.apiHint {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.apiHint code {
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  color: var(--accent2);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0 16px;
+}
+
+/* ── Camera slot config ── */
+.camSlotCfg {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.camSlotLabel {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.camTypeRow {
+  display: flex;
+  gap: 6px;
+}
+
+.camTypeBtn {
+  flex: 1;
+  padding: 6px 8px;
+  background: var(--surface3);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--muted);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+
+.camTypeBtn:hover { color: var(--text); border-color: var(--muted); }
+
+.camTypeBtnActive {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  color: #fff;
+}
+
+.camSourceRow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.camHint {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.camHint code {
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  color: var(--accent2);
+}
+
+.camLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
 }
 
 /* ===== CÂMERAS ===== */
