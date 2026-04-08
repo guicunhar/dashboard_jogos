@@ -11,7 +11,7 @@ import styles from './ControlPanel.module.css'
 const TABS = [
   { id: 'jogo',      label: '⚽ Jogo'      },
   { id: 'escalacao', label: '📋 Escalações' },
-  { id: 'cameras',   label: '📹 Câmeras'   },
+  { id: 'cameras',   label: '📹 C.âmeras'   },
   { id: 'config',    label: '⚙️ Config'    },
 ]
 
